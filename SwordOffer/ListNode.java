@@ -16,4 +16,14 @@ public class ListNode{
 		}
 		return head;
 	}
+
+	public static ListNode createRevertList(){
+		ListNode head = new ListNode(0);
+		ListNode tmp = head;
+		for (int j = 5; j<0 ; j++) {
+			tmp.next = new ListNode(j);
+			tmp = tmp.next;
+		}
+		return head;
+	}
 }
