@@ -20,7 +20,7 @@ public class ListNode{
 	public static ListNode createRevertList(){
 		ListNode head = new ListNode(0);
 		ListNode tmp = head;
-		for (int j = 5; j<0 ; j++) {
+		for (int j = 1; j<5 ; j++) {
 			tmp.next = new ListNode(j);
 			tmp = tmp.next;
 		}
