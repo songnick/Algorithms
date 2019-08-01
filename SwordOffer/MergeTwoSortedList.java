@@ -42,6 +42,7 @@ public class MergeTwoSortedList{
                     tmpNode.next = list2;
                     tmpNode = list2;
                 }
+                list2 = list2.next;
             }else{
                 if (newHead == null) {
                     newHead = list1;
@@ -50,18 +51,20 @@ public class MergeTwoSortedList{
                     tmpNode.next = list1;
                     tmpNode = list1;
                 }
+                list1 = list1.next;
             }
-
-            while(list1 != null){
+            
+        }
+         while(list1 != null){
                 tmpNode.next = list1;
                 tmpNode = list1;
+                list1 = list1.next;
             }
             while(list2 != null){
                 tmpNode.next = list2;
                 tmpNode = list2;
+                list2 = list2.next;
             }
-            
-        }
         return newHead;
     }
 
