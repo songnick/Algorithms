@@ -5,7 +5,7 @@
 	1. 常规的遍历处理；
 	2. 使用双指针进行前后逼近处理数据；
 
-![冒泡排序](https://github.com/songnick/Algorithms/blob/master/BasicSort/BubbleSort.java)
+[冒泡排序](https://github.com/songnick/Algorithms/blob/master/BasicSort/BubbleSort.java)
 
 ### 剑指offer的题目算法实现
 
