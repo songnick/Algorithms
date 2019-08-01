@@ -2,8 +2,9 @@
 
 ### 基本的排序算法
 	基本的排序算法主要是锻炼我们数组相关的处理能力，我总结一下主要包含以下几点：
-1. 常规的遍历处理；
-2. 使用双指针进行前后逼近处理数据；
+	1. 常规的遍历处理；
+	2. 使用双指针进行前后逼近处理数据；
+	![冒泡排序](https://github.com/songnick/Algorithms/blob/master/BasicSort/BubbleSort.java)
 
 ### 剑指offer的题目算法实现
 
