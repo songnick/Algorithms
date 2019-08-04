@@ -5,7 +5,7 @@
 	栈：先进后出－FILO
 	队列：先进先出－FIFO
 	push的时候使用一个栈s1来存储放入的值，当pop的时候先将s1的值一个个拿出来存储到另一个栈s2，这样从s2出来就是s1的倒序；
-	[实现流程](../png/TwoStackQueue.png)
+	![实现流程](../png/TwoStackQueue.png)
 
 - 代码实现
 
