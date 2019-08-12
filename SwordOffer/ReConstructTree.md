@@ -30,11 +30,13 @@ public class ReConstructTree{
 			}
 		}
 		int midOrderRoot = startMidOrder;
-
+		//找到中序遍历中，根节点的位置
 		while(midOrderRoot < midOrder.length && midOrder[midOrderRoot] != rootValue){
 			midOrderRoot++;
 		}
+		//确定根节点左子树的大小
 		int leftLength = midOrderRoot - startMidOrder;
+		//前序遍历左子树的位置
 		int leftPreOder = startPreOrder + leftLength;
 		if (leftLength > 0) {
 			root.mLeft = reConstruct(preOrder, startPreOrder + 1, leftPreOder, midOrder, startMidOrder, midOrderRoot - 1);
