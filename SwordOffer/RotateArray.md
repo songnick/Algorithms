@@ -1,3 +1,13 @@
+- 问题描述
+  把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
+
+- 分析思路
+  分为多种情况：由于是非递减的，所以数组可能是分段递增的数组，也可能为分段递增、分段数据为常数；
+  分段递增：使用两个指针，分别从数组的头部和尾部向中间逼近，采用二分法，寻找到中间位置，当两个相差值为1时，表示尾部的指针指向的位置就是要寻找的值；
+
+- 代码实现
+
+```java
 public class RotateArray{
 
 	public static int minNumberInRotateArray(int[] data){
@@ -41,8 +51,9 @@ public class RotateArray{
 	}
 
 	public static void main(String[] args) {
-		int[] data = {3,4,5,1,2};
-        System.out.println(" result: " + minNumberInRotateArray(data));
+		
 	}
 
 }
+
+```
