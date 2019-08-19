@@ -1,6 +1,4 @@
 public class ReConstructTree{
-
-
 	public static TreeNode reConstruct(int[] preOrder, int[] midOrder){
 		if (preOrder == null || preOrder == null) {
 			return null;
@@ -21,14 +19,11 @@ public class ReConstructTree{
 
 			}
 		}
-		
-
 		int midOrderRoot = startMidOrder;
 
 		while(midOrderRoot < midOrder.length && midOrder[midOrderRoot] != rootValue){
 			midOrderRoot++;
 		}
-
 		int leftLength = midOrderRoot - startMidOrder;
 		int leftPreOder = startPreOrder + leftLength;
 		if (leftLength > 0) {
@@ -39,7 +34,7 @@ public class ReConstructTree{
 		}
 		return root;
 	}
-
+	
 	public static void main(String[] args) {
 		// int[] preOrder = {1,2,3,4,5,6,7}, midOrder = {3,2,4,1,6,5,7};
 		int[] preOrder = {1,2,3,4}, midOrder = {1,2,3,4};

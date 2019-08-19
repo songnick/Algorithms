@@ -19,8 +19,6 @@ public class FindKthToTail{
         }
         return null;
 	}
-
-
 	public static void main(String[] args) {
 		ListNode result = findKthToTail(ListNode.createSimpleList(), 3);
 		while(result != null){
