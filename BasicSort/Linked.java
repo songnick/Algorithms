@@ -1,5 +1,13 @@
+import java.util.ArrayList;
+
 public class Linked{
 	public static void main(String[] args) {
+		// testMerge();
+		// testLoop();
+		testfindKthToTail();
+	}
+
+	public static void testMerge(){
 		int[] data = {1, 2, 3, 4, 5, 6};
 		int[] data1 = {2, 5, 7, 8};
 		LinkedNode head = LinkedNode.build(data);
@@ -8,6 +16,33 @@ public class Linked{
 		while(head != null){
 			System.out.println("node: " + head.value);
 			head = head.next;
+		}
+	}
+
+	/**测试环形链表入口检测**/
+	public static void testLoop(){
+		LinkedNode ln1 = new LinkedNode(0);
+		LinkedNode ln2 = new LinkedNode(1);
+		LinkedNode ln3 = new LinkedNode(2);
+		LinkedNode ln4 = new LinkedNode(3);
+		LinkedNode ln5 = new LinkedNode(4);
+		LinkedNode ln6 = new LinkedNode(5);
+		ln1.next = ln2;
+		ln2.next = ln3;
+		ln3.next = ln4;
+		ln4.next = ln5;
+		ln5.next = ln6;
+		ln6.next = ln3;
+		LinkedNode result = entryListOfLoop(ln1);
+		System.out.println(" loop result: " + result.value);
+	}
+
+	public static void testfindKthToTail(){
+		int[] data = {1, 2, 3, 4, 5, 6};
+		LinkedNode head = LinkedNode.build(data);
+		LinkedNode result = findKthToTail(head, 2);
+		if (result != null) {
+			System.out.println(" result: " + result.value);
 		}
 	}
 
@@ -89,6 +124,7 @@ public class Linked{
 		return head;
 	}
 
+	/**合并有序链表：使用递归方法**/
 	public static LinkedNode mergeSortedNodeEx(LinkedNode head1, LinkedNode head2){
 		if (head1 == null) {
 			return head2;
@@ -108,6 +144,58 @@ public class Linked{
 		}
 		return head;
 	}
+
+	/**从链表尾部打印到头部**/
+	public static ArrayList<Integer> println(){
+
+		return null;
+	}
+
+	/**找到链表的倒数第K个节点**/
+	public static LinkedNode findKthToTail(LinkedNode head, int k){
+		if (head != null && k > 0) {
+			int n = 0;
+			LinkedNode kNode = head;
+			LinkedNode indexNode = head;
+			while(indexNode != null){
+				if (n == k && kNode != null) {
+					kNode = kNode.next;
+				}else{
+					n++;
+				}
+				indexNode = indexNode.next;
+			}
+
+			return kNode;
+		}
+		return null;
+	}
+
+	/**寻找环形链表的入口**/
+	public static LinkedNode entryListOfLoop(LinkedNode head){
+		if (head != null && head.next != null) {
+			LinkedNode slow = head.next;
+			LinkedNode fast = head.next.next;
+			//确认是否是环形链表，使用快慢指针
+			while(slow != fast){
+				if (fast != null && fast.next != null) {
+					slow = slow.next;
+					fast = fast.next.next;
+				}else{
+					break;
+				}
+			}
+			//找出环形链表的入口
+			fast = head;
+			while(slow != fast){
+				slow = slow.next;
+				fast = fast.next;
+			}
+			return fast;
+		}
+		return null;
+	}
+
 
 	public static void insert(LinkedNode head, LinkedNode appendNode){
 		if (head == null) {
