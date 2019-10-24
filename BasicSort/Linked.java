@@ -50,9 +50,16 @@ public class Linked{
 	public static class LinkedNode{
 		public int value;
 		public LinkedNode next;
+		public LinkedNode random;
 
 		public LinkedNode(int value){
 			this.value = value;
+		}
+
+		public LinkedNode(LinkedNode node){
+			if (node != null) {
+				this.value = node.value;
+			}
 		}
 
 		public static LinkedNode build(int[] data){
@@ -247,6 +254,28 @@ public class Linked{
 			return fast;
 		}
 		return null;
+	}
+
+	public static LinkedNode copyComplexLinked(LinkedNode head){
+		if (head != null && head.next != null) {
+			LinkedNode copyIndex = head;
+			LinkedNode node = head;
+			//复制链表
+			while(node != null){
+				LinkedNode newNode = new LinkedNode(node);
+				newNode.next = node.next;
+				node.next = newNode;
+				node = newNode.next;
+			}
+			//将随机链表链接起来
+			node = head;
+			while(node != null && node.next != null;){
+				if (node.random != null) {
+					node.next.random = node.random.next;
+				}
+			}
+
+		}
 	}
 
 
