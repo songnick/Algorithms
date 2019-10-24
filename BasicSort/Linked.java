@@ -41,8 +41,9 @@ public class Linked{
 		int[] data = {1, 2, 3, 4, 5, 6};
 		LinkedNode head = LinkedNode.build(data);
 		LinkedNode result = findKthToTail(head, 2);
+		LinkedNode result1 = findKthToTail(head, 7);
 		if (result != null) {
-			System.out.println(" result: " + result.value);
+			System.out.println(" result: " + result.value + " result1: " + result1);
 		}
 	}
 
@@ -146,9 +147,11 @@ public class Linked{
 	}
 
 	/**从链表尾部打印到头部**/
-	public static ArrayList<Integer> println(){
-
-		return null;
+	public static void printTailToHead(LinkedNode head){
+		if (head != null) {
+			printTailToHead(head.next);
+			System.out.println("value: " + head.value);
+		}
 	}
 
 	/**找到链表的倒数第K个节点**/
@@ -157,16 +160,66 @@ public class Linked{
 			int n = 0;
 			LinkedNode kNode = head;
 			LinkedNode indexNode = head;
-			while(indexNode != null){
-				if (n == k && kNode != null) {
+			while(indexNode.next != null){
+				if (n == k-1) {
 					kNode = kNode.next;
 				}else{
 					n++;
 				}
 				indexNode = indexNode.next;
 			}
-
+			//边界条件需要注意:删除的范围超过了链表的大小
+			System.out.println(" K: " + kNode.value);
+			if (n < k-1) {
+				
+				return null;
+			}
 			return kNode;
+		}
+		return null;
+	}
+
+	 public static LinkedNode findKthToTailEx(LinkedNode head,int k) {
+        if(head != null && k > 0){
+            LinkedNode pKNode = head;
+            LinkedNode nKNode = head;
+            for(int i = 0; i < k -1; i++){
+                if(pKNode.next != null){
+                    pKNode = pKNode.next;
+                }else{
+                    return null;
+                }
+            }
+            while(pKNode.next != null){
+                pKNode = pKNode.next;
+                nKNode = nKNode.next;
+            }
+            return nKNode;
+        }
+        return null;
+    }
+
+	/**删除链表的第K个节点**/
+	public static LinkedNode deleteKthNodeToTail(LinkedNode head, int k){
+		if (head != null && k > 0) {
+			LinkedNode index = head;
+			LinkedNode preDelete = head;
+			int n = 0;
+			while(index.next != null){
+				if (n == k) {
+					preDelete = preDelete.next;
+				}else{
+					++n;
+				}
+				index = index.next;
+			}
+			if (n < k) {
+				return null;
+			}
+			if (preDelete != null && preDelete.next != null) {
+				preDelete.next = preDelete.next.next;
+			}
+			return head;
 		}
 		return null;
 	}
