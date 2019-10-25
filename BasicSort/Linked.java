@@ -267,6 +267,7 @@ public class Linked{
 		return null;
 	}
 
+	/**复制复杂链表**/
 	public static LinkedNode copyComplexLinked(LinkedNode head){
 		if (head != null && head.next != null) {
 			LinkedNode copyIndex = head;
@@ -308,6 +309,24 @@ public class Linked{
 		return null;
 	}
 
+	/**寻找链表的中间节点**/
+	public static LinkedNode midNode(LinkedNode head){
+		if (head != null && head.next != null) {
+			LinkedNode slow = head;
+			LinkedNode fast = head;
+			while(fast != null){
+				if (fast.next != null) {
+					fast = fast.next.next;
+				}else{
+					break;
+				}
+				slow = slow.next;
+			}
+			return slow;
+		}
+
+		return head;
+	}
 
 	public static void insert(LinkedNode head, LinkedNode appendNode){
 		if (head == null) {
