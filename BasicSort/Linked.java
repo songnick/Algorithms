@@ -4,7 +4,8 @@ public class Linked{
 	public static void main(String[] args) {
 		// testMerge();
 		// testLoop();
-		testfindKthToTail();
+		// testfindKthToTail();
+		testCopyComplexList();
 	}
 
 	public static void testMerge(){
@@ -44,6 +45,16 @@ public class Linked{
 		LinkedNode result1 = findKthToTail(head, 7);
 		if (result != null) {
 			System.out.println(" result: " + result.value + " result1: " + result1);
+		}
+	}
+
+	public static void testCopyComplexList(){
+		int[] data = {1, 2, 3, 4, 5, 6};
+		LinkedNode head = LinkedNode.build(data);
+		head = copyComplexLinked(head);
+		while(head != null){
+			System.out.println("node: " + head.value);
+			head = head.next;
 		}
 	}
 
@@ -260,6 +271,7 @@ public class Linked{
 		if (head != null && head.next != null) {
 			LinkedNode copyIndex = head;
 			LinkedNode node = head;
+			System.out.println(" start copy");
 			//复制链表
 			while(node != null){
 				LinkedNode newNode = new LinkedNode(node);
@@ -267,15 +279,33 @@ public class Linked{
 				node.next = newNode;
 				node = newNode.next;
 			}
+			System.out.println(" end copy");
 			//将随机链表链接起来
 			node = head;
-			while(node != null && node.next != null;){
+			while(node != null && node.next != null){
 				if (node.random != null) {
 					node.next.random = node.random.next;
 				}
+				node = node.next.next;
 			}
-
+			System.out.println(" link random end");
+			//将链表从大的链表中拎出来
+			LinkedNode copyHead = head.next;
+			copyIndex = copyHead;
+			if (copyIndex != null) {
+				node = copyIndex.next;
+			}
+			while(node != null && node.next != null){
+				copyIndex.next = node.next;
+				copyIndex = copyIndex.next;
+				if (copyIndex != null) {
+					node = copyIndex.next;
+				}
+			}
+			System.out.println(" all end");
+			return copyHead;
 		}
+		return null;
 	}
 
 
