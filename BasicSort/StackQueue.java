@@ -1,36 +1,27 @@
+
+import java.util.Stack;
+
 public class StackQueue{
 	public static void main(String[] args) {
 		
 	}
 
-
-	public static class Stack<T>{
-
-		public T[] values;
-
-		public Stack(){
-
-		}
-
-		public void push(T value){
-			if () {
-				
+	public static int caculate(String cs){
+		if (cs != null && "".equals(cs)) {
+			char[] chars = cs.toCharArray();
+			Stack<String> data = new Stack<>();
+			Stack<String> magic = new Stack<>();
+			for (int i = 0 ; i < chars.length; i++) {
+				String s = "" + chars[i];
+				boolean isMagic = "+".equals(s) || "-".equals(s) || "*".equals(s) || "/".equals(s);
+				if (isMagic) {
+					magic.push(s);
+				}else{
+					data.push(s);
+				}
 			}
 		}
-
-		public T pop(){
-
-		}
-
-		public boolean isEmpty(){
-
-			return false;
-		}
-
+		return 0;
 	}
 
-
-	public static class Queue{
-
-	}
 }
