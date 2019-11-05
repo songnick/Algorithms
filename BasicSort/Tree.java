@@ -1,13 +1,25 @@
 import java.util.Stack;
-
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Tree{
 	public static void main(String[] args) {
 		testDepth();
+		testBreadth();
+		testPrintZ();
 	}
 
 	private static void testDepth(){
 		depthFirstSearch(TreeNode.buildTest());
+	}
+
+	private static void testBreadth(){
+		breadthFirstSearch(TreeNode.buildTest());
+	}
+
+	private static void testPrintZ(){
+		printTreeZ(TreeNode.buildTest());
 	}
 
 
@@ -50,6 +62,9 @@ public class Tree{
 	}
 
 
+	/***
+	**	树的深度优先遍历方法
+	**/
 	public static void depthFirstSearch(TreeNode root){
 		if (root != null) {
 			Stack<TreeNode> stack = new Stack<>();
@@ -57,11 +72,77 @@ public class Tree{
 			while(!stack.isEmpty()){
 				TreeNode node = stack.pop();
 				if (node != null) {
-					System.out.println(" node: " + node.value);
+					System.out.println(" depth: " + node.value);
 					stack.push(node.right);
 					stack.push(node.left);
 				}
 			}
 		}
 	}
+
+	/***
+		树的广度优先遍历
+	**/
+	public static void breadthFirstSearch(TreeNode root){
+		if (root != null) {
+			Queue<TreeNode> queue = new LinkedList<>();
+			queue.add(root);
+			while(!queue.isEmpty()){
+				TreeNode node = queue.poll();
+				if (node != null) {
+					System.out.println(" breadth: " + node.value);
+					queue.add(node.left);
+					queue.add(node.right);
+				}
+			}
+		}
+	}
+
+	/***之字形打印树**/
+	public static ArrayList<ArrayList<Integer>> printTreeZ(TreeNode root){
+		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+		if (root != null) {
+			Stack<TreeNode> oddStack = new Stack<>();
+			oddStack.push(root);
+			Stack<TreeNode> evenStack = new Stack<>();
+			int index = 1;
+			while(!oddStack.isEmpty() || !evenStack.isEmpty()){
+				if (index % 2 != 0) {
+					ArrayList<Integer> tt = new ArrayList<>();
+					while(!oddStack.isEmpty()){
+						TreeNode node = oddStack.pop();
+						if (node != null) {
+							System.out.println(" odd: " + node.value);
+							tt.add(node.value);
+							evenStack.push(node.left);
+							evenStack.push(node.right);
+						}
+					}
+					if (!tt.isEmpty()) {
+						list.add(tt);
+						index++;
+					}
+				}else{
+					ArrayList<Integer> aa = new ArrayList<>();
+					while(!evenStack.isEmpty()){
+						TreeNode node = evenStack.pop();
+						if (node != null) {
+							aa.add(node.value);
+							System.out.println(" even: " + node.value);
+							oddStack.push(node.right);
+							oddStack.push(node.left);
+						}
+					}
+					if (!aa.isEmpty()) {
+						list.add(aa);
+						index++;
+					}
+				}
+			}
+		}
+
+		return list;
+	}
+
+
 }
