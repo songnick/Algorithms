@@ -199,7 +199,7 @@ public class Tree{
         this.val = val;
     }
 
-	/***给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针**/
+	/***剑指offer：给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针**/
 
 	public static TreeLinkNode getNext(TreeLinkNode node){
 		if (node == null) {
@@ -216,6 +216,7 @@ public class Tree{
 			if (node.next != null) {
 				target = node.next;
 				TreeLinkNode cur = node;
+				//判定当前节点是否为父亲节点的左子树，如果是父亲节点的左子树直接返回，否则为右子树
 				while (target != null && target.left != cur) {
 					cur = target;
 					target = target.left;
@@ -224,6 +225,25 @@ public class Tree{
 			return target;
 		}
 		return target;
+	}
+
+	/***剑指offer：请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的**/
+
+	public static boolean isSymmetrical(TreeNode node1, TreeNode node2){
+		if (node1 == null && node2 == null) {
+			return true;
+		}
+		if (node1 == null || node2 == null) {
+			
+			return false;
+		}
+		//两个值相等则证明是对称的；
+		if (node1.value == node2.value) {
+			
+			return true;
+		}
+
+		return isSymmetrical(node1.left, node2.right) && isSymmetrical(node1.right && node2.left);
 	}
 
 
