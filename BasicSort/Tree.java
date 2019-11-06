@@ -140,8 +140,90 @@ public class Tree{
 				}
 			}
 		}
-
 		return list;
+	}
+
+
+	/**从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行**/
+	public static ArrayList<ArrayList<Integer>> printFromTop(TreeNode root){
+		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+		if (root != null) {
+			Stack<TreeNode> oddStack = new Stack<>();
+			oddStack.push(root);
+			Stack<TreeNode> evenStack = new Stack<>();
+			int index = 1;
+			while(!oddStack.isEmpty() || !evenStack.isEmpty()){
+				if (index % 2 != 0) {
+					ArrayList<Integer> tt = new ArrayList<>();
+					while(!oddStack.isEmpty()){
+						TreeNode node = oddStack.pop();
+						if (node != null) {
+							System.out.println(" odd: " + node.value);
+							tt.add(node.value);
+							evenStack.push(node.left);
+							evenStack.push(node.right);
+						}
+					}
+					if (!tt.isEmpty()) {
+						list.add(tt);
+						index++;
+					}
+				}else{
+					ArrayList<Integer> aa = new ArrayList<>();
+					while(!evenStack.isEmpty()){
+						TreeNode node = evenStack.pop();
+						if (node != null) {
+							aa.add(node.value);
+							System.out.println(" even: " + node.value);
+							oddStack.push(node.left);
+							oddStack.push(node.right);
+						}
+					}
+					if (!aa.isEmpty()) {
+						list.add(aa);
+						index++;
+					}
+				}
+			}
+		}
+		return list;
+	}
+
+	public static class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+
+	/***给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针**/
+
+	public static TreeLinkNode getNext(TreeLinkNode node){
+		if (node == null) {
+			return null;
+		}
+		TreeLinkNode target = null;
+		if (node.right != null) {
+			target = node.right;
+			while(target != null){
+				target = target.left;
+			}
+			return target;
+		}else{
+			if (node.next != null) {
+				target = node.next;
+				TreeLinkNode cur = node;
+				while (target != null && target.left != cur) {
+					cur = target;
+					target = target.left;
+				}
+			}
+			return target;
+		}
+		return target;
 	}
 
 
