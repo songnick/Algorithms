@@ -247,6 +247,28 @@ public class Tree{
 		return isSymmetrical(node1.left, node2.right) && isSymmetrical(node1.right, node2.left);
 	}
 
+	/**leetcode：Univalued Binary Tree； 判定二叉树的所有节点都是一个值***/
+	private int nVal = Integer.MAX_VALUE;
+    public boolean isUnivalTree(TreeNode root) {
+        if(root != null){
+            nVal = root.val;
+            return isUnivalTreePre(root);
+        }
+        
+        return false;
+    }
+    
+    private boolean isUnivalTreePre(TreeNode root){
+        if(root != null){
+            if(root.val != nVal){
+                return false;
+            }
+            return isUnivalTreePre(root.left) && isUnivalTreePre(root.right);
+        }
+        
+        return true;
+    }
+
 	/**
 	*这里定义一个二叉搜索树类型的类，相关的算法在这里实现
 	**/
