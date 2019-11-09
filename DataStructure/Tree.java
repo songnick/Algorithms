@@ -247,4 +247,35 @@ public class Tree{
 		return isSymmetrical(node1.left, node2.right) && isSymmetrical(node1.right, node2.left);
 	}
 
+	/**
+	*这里定义一个二叉搜索树类型的类，相关的算法在这里实现
+	**/
+	public static class BSTree{
+
+		/**leetcode——Increasing Order Search Tree：给定一个二叉搜索树，输出为只有右子树的二叉树***/
+		TreeNode head = null;
+		TreeNode node = null;
+		public static TreeNode increasingBST(TreeNode root){
+			increasingMidBST(root);
+			return head;
+		}
+
+		public static void increasingMidBST(TreeNode root){
+			if(root != null){
+	            midOrder(root.left);
+	            if(node == null){
+	                node = root;
+	                head = root;
+	            }else{
+	                node.right = new TreeNode(root.value);
+	                node = node.right;
+	            }
+	            System.out.println("Node: " + node.value);
+	            midOrder(root.right);
+	        }else{
+	            return;
+	        }
+		}
+	}
+
 }
