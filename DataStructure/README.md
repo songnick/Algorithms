@@ -6,3 +6,7 @@
 
 #### 栈&队列
 ![zhan](https://github.com/songnick/Algorithms/blob/master/png/Stack%26Queue.png)
+
+#### 树
+
+![](../png/Tree.png)
