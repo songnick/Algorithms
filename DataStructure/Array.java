@@ -5,7 +5,7 @@ public class Array{
 		
 	}
 
-
+	/**剑指offer：顺时针打印矩阵***/
 	public static ArrayList<Integer> printMatrix(int[][] array){
 		ArrayList<Integer> list = new ArrayList<>();
 		if (array == null || array.length == 0) {
@@ -30,7 +30,6 @@ public class Array{
 		for (int i=start; i <= endx; i++) {
 			list.add(array[start][i]);
 		}
-
 		//从上到小
 		if (endY > start) {
 			for (int i = start+1; i <= endY ; i++) {
@@ -43,7 +42,6 @@ public class Array{
 				list.add(array[endY][i]);
 			}
 		}
-
 		//从下往上，至少三列两行
 		if (endY > (start + 1) && endx > start) {
 			for (int i = endY - 1; i >= start + 1; i--) {
