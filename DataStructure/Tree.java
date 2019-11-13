@@ -298,6 +298,30 @@ public class Tree{
 	            return;
 	        }
 		}
+
+		/**剑指offer：二叉搜索树的第k个结点：给定一棵二叉搜索树，请找出其中的第k小的结点***/
+		private int index = 0;
+		public TreeNode kTheNode(TreeNode root, int k){
+			if (root != null) {
+				TreeNode node = kTheNode(root.left, k);
+				//这里的主要作用是一直找到左子树最后一个子节点
+				if (node != null) {
+					return node;
+				}
+				index++;
+				if (index == k) {
+					
+					return root;
+				}
+				node = kTheNode(root.right, k);
+				if (node != null) {
+					return node;
+				}
+			}
+
+			return root;
+		}
+
 	}
 
 }
