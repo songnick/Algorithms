@@ -1,8 +1,32 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Array{
 	public static void main(String[] args) {
 		
+	}
+
+	/**剑指offer：数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字，如果不存在返回0***/
+	public static int moreThanHalfNum(int[] array){
+		if (array != null && array.length > 0) {
+			if (array.length == 1) {
+				return array[0];
+			}
+			HashMap<Integer, Integer> map = new HashMap<>();
+			for (int i=0; i<array.length; i++) {
+				int key = array[i];
+				if (map.containsKey(key)) {
+					int value = map.get(val);
+					map.put(key, ++value);
+					if (key > array.length/2) {
+						return key;
+					}
+				}else{
+					map.put(key, 1);
+				}
+			}
+		}
+		return 0;
 	}
 
 	/**剑指offer：顺时针打印矩阵***/
@@ -48,6 +72,5 @@ public class Array{
 				list.add(array[i][start]);
 			}
 		}
-
 	}
 }
