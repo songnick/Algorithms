@@ -324,4 +324,56 @@ public class Tree{
 
 	}
 
+	/**剑指Offer：序列化与反序列化二叉树***/
+	public class Solution {
+    StringBuilder mSb = new StringBuilder();
+    int index = -1;
+    public String Serialize(TreeNode root) {
+        if(root == null){
+            return "";
+        }
+        return serialize2(root, mSb);
+    }
+    
+    public String serialize2(TreeNode root, StringBuilder sb) {
+        if(root == null){
+            sb.append("#,");
+            return sb.toString();
+        }
+        sb.append(root.val);
+        sb.append(",");
+        serialize2(root.left, sb);
+        serialize2(root.right, sb);
+        System.out.println(" ser: " + sb.toString());
+        return sb.toString();
+    }
+    public TreeNode Deserialize(String str) {
+        if(str == null || str.length() == 0){
+            return null;
+        }
+        String[] ss = str.split(",");
+        System.out.println("str: " + str + " split out: " + ss.length);
+        return Deserialize2(ss);
+    }
+    TreeNode Deserialize2(String[] str) {
+        index++;
+        System.out.println(" index: " + index + str.length);
+        if(str == null || str.length == 0 || index >= str.length){
+            return null;
+        }
+        if(index < str.length){
+            String s = str[index];
+            if(!"#".equals(s)){
+                TreeNode node = new TreeNode(0);
+                node.val = Integer.valueOf(s);
+                node.left = Deserialize2(str);
+                node.right = Deserialize2(str);
+                return node;
+            }
+        }
+        
+        return null;
+  }
+}
+
 }
