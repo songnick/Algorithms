@@ -251,7 +251,7 @@ public class Tree{
 	private int nVal = Integer.MAX_VALUE;
     public boolean isUnivalTree(TreeNode root) {
         if(root != null){
-            nVal = root.val;
+            nVal = root.value;
             return isUnivalTreePre(root);
         }
         
@@ -260,7 +260,7 @@ public class Tree{
     
     private boolean isUnivalTreePre(TreeNode root){
         if(root != null){
-            if(root.val != nVal){
+            if(root.value != nVal){
                 return false;
             }
             return isUnivalTreePre(root.left) && isUnivalTreePre(root.right);
@@ -275,8 +275,8 @@ public class Tree{
 	public static class BSTree{
 
 		/**leetcode——Increasing Order Search Tree：给定一个二叉搜索树，输出为只有右子树的二叉树***/
-		TreeNode head = null;
-		TreeNode node = null;
+		static TreeNode head = null;
+		static TreeNode node = null;
 		public static TreeNode increasingBST(TreeNode root){
 			increasingMidBST(root);
 			return head;
@@ -298,6 +298,23 @@ public class Tree{
 	            return;
 	        }
 		}
+
+		private static void midOrder(TreeNode root){
+        if(root != null){
+            midOrder(root.left);
+            if(node == null){
+                node = root;
+                head = root;
+            }else{
+                node.right = new TreeNode(root.value);
+                node = node.right;
+            }
+            System.out.println("Node: " + node.value);
+            midOrder(root.right);
+        }else{
+            return;
+        }
+    }
 
 		/**剑指offer：二叉搜索树的第k个结点：给定一棵二叉搜索树，请找出其中的第k小的结点***/
 		private int index = 0;
@@ -340,7 +357,7 @@ public class Tree{
             sb.append("#,");
             return sb.toString();
         }
-        sb.append(root.val);
+        sb.append(root.value);
         sb.append(",");
         serialize2(root.left, sb);
         serialize2(root.right, sb);
@@ -365,7 +382,7 @@ public class Tree{
             String s = str[index];
             if(!"#".equals(s)){
                 TreeNode node = new TreeNode(0);
-                node.val = Integer.valueOf(s);
+                node.value = Integer.valueOf(s);
                 node.left = Deserialize2(str);
                 node.right = Deserialize2(str);
                 return node;
